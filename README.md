@@ -212,7 +212,7 @@ vns-research-platform/
 Local-first -- cheap and in order. You do not pay for the cloud until Phase 3.
 
 | Phase | What you do | 
-|---|---|---|
+|---|---|
 | **0** | `docker compose up` — API + db + generator on your laptop  |
 | **1** | The same stack on local Kubernetes (kind/k3s), manifests from `deploy/base` | 
 | **2** | Jenkins in Docker locally; pipeline lint → test → build → push (local registry) | 
