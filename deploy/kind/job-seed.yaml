@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: seed
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      labels:
+        app: seed
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: generator
+          image: vns-generator:local
+          imagePullPolicy: IfNotPresent
+          # The generator waits for Postgres itself (wait_for_db), so this Job
+          # can be applied at the same time as everything else.
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: vns-secret
+                  key: DATABASE_URL
+            - name: SEED
+              valueFrom:
+                configMapKeyRef:
+                  name: vns-config
+                  key: SEED
+            - name: N_EXPERIMENTS
+              valueFrom:
+                configMapKeyRef:
+                  name: vns-config
+                  key: N_EXPERIMENTS
+            - name: RESET
+              value: "true"

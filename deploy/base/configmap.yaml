@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vns-config
+data:
+  # Non-sensitive configuration shared by the services.
+  POSTGRES_DB: "vns"
+  SEED: "42"
+  N_EXPERIMENTS: "5"

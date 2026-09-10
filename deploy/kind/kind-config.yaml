@@ -1,0 +1,17 @@
+# Create the local cluster with:
+#   kind create cluster --config deploy/kind/kind-config.yaml
+#
+# Reaching the API from your host, two options:
+#   1) Simplest — port-forward:   kubectl port-forward svc/api 8000:80
+#      then open http://localhost:8000
+#   2) NodePort — set the api Service to type NodePort with nodePort 30080;
+#      the mapping below then exposes it on http://localhost:8000
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: vns
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 8000
+        protocol: TCP
