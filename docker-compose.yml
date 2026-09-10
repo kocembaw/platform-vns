@@ -1,0 +1,48 @@
+# Local development stack (Phase 0): Postgres + one-shot seed generator + API.
+#   docker compose up --build      (or: make up)
+#   curl http://localhost:8000/experiments
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: vns
+      POSTGRES_PASSWORD: vns
+      POSTGRES_DB: vns
+    ports:
+      - "5432:5432"          # exposed so you can connect from the host if needed
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vns -d vns"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  generator:
+    build: ./data-generator
+    environment:
+      DATABASE_URL: "postgresql+psycopg2://vns:vns@db:5432/vns"
+      SEED: "42"
+      N_EXPERIMENTS: "5"
+      RESET: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"          # runs once, seeds the DB, then exits
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: "postgresql+psycopg2://vns:vns@db:5432/vns"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      generator:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  db_data:
