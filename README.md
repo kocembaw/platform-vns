@@ -66,7 +66,6 @@ flowchart LR
     style eks fill:#3a404a,stroke:#5b616b,color:#d6d9df;
 ```
 
-   
 
 The CI/CD pipeline operates from top to bottom; when errors occur, the various gates (namely Lint, Unit tests, and Smoke tests) branch off to 'Build failed', after which a loop returns to the top once a fix has been made. If a smoke test fails, the deployment is rolled back.
 
