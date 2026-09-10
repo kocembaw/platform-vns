@@ -1,0 +1,31 @@
+# Protocol parameter dictionary the generator samples from.
+# All ranges are [min, max]; metrics are SYNTHETIC, not real physiology.
+#   sessions_per_experiment : how many sessions to create per experiment
+#   duration_s              : session length in seconds
+#   mean_hr_bpm             : fabricated mean heart rate
+#   hrv_rmssd_ms / hrv_sdnn_ms : fabricated heart-rate-variability metrics
+
+protocols:
+  - name: taVNS-A
+    description: "Left-ear taVNS, low-frequency profile"
+    sessions_per_experiment: [8, 16]
+    duration_s: [600, 1800]
+    mean_hr_bpm: [58, 74]
+    hrv_rmssd_ms: [30, 65]
+    hrv_sdnn_ms: [45, 90]
+
+  - name: taVNS-B
+    description: "Left-ear taVNS, high-frequency profile"
+    sessions_per_experiment: [6, 12]
+    duration_s: [900, 2100]
+    mean_hr_bpm: [60, 80]
+    hrv_rmssd_ms: [25, 55]
+    hrv_sdnn_ms: [40, 80]
+
+  - name: sham
+    description: "Sham stimulation (control)"
+    sessions_per_experiment: [8, 14]
+    duration_s: [600, 1800]
+    mean_hr_bpm: [62, 82]
+    hrv_rmssd_ms: [20, 45]
+    hrv_sdnn_ms: [35, 70]
