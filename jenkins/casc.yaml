@@ -55,7 +55,7 @@ jobs:
           cpsScm {
             scm {
               git {
-                remote { url('https://github.com/your-username/vns-research-platform.git') }
+                remote { url('https://github.com/kocembaw/vns-research-platform.git') }
                 branches('*/main')
               }
             }
