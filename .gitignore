@@ -1,0 +1,57 @@
+# ---- Python (api/, data-generator/) ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+# Real Kubernetes Secret — the tracked template is secret.example.yaml
+secret.yaml
+deploy/**/secret.yaml
+
+# ---- Terraform (infra/) ----
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+# Variable files may hold secrets (e.g. db_password) — keep them out of git.
+# An example named *.tfvars.example is NOT matched and can be committed.
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# NOTE: .terraform.lock.hcl is intentionally NOT ignored — commit it so provider
+# versions are pinned and reproducible.
+
+# ---- Docker / Compose ----
+docker-compose.override.yml
+
+# ---- Editors / OS ----
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# ---- Logs ----
+*.log
