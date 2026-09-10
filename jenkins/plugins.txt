@@ -1,0 +1,27 @@
+# Lines starting with '#' are comments. One plugin short-name per line.
+# Pin versions if you need reproducible builds, e.g. "git:5.2.2".
+
+# --- Pipeline ---
+workflow-aggregator
+pipeline-stage-view
+
+# --- Source control ---
+git
+github-branch-source
+
+# --- Build & deploy tooling ---
+docker-workflow
+kubernetes
+kubernetes-cli
+
+# --- Configuration & job definitions as code ---
+configuration-as-code
+job-dsl
+
+# --- Credentials ---
+credentials
+credentials-binding
+
+# --- Quality of life ---
+timestamper
+ws-cleanup

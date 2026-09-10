@@ -1,0 +1,65 @@
+# Jenkins Configuration as Code (JCasC).
+# Loaded at startup from the path in CASC_JENKINS_CONFIG.
+# ${VAR:-default} reads an environment variable, falling back to the default
+# so Jenkins still boots before you have wired up real credentials.
+
+jenkins:
+  systemMessage: "VNS Research Platform — Jenkins configured entirely via JCasC"
+  numExecutors: 2
+  mode: NORMAL
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          password: "${JENKINS_ADMIN_PASSWORD:-admin}"
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+# Let the JCasC-provided Job DSL script below run without manual approval.
+# Fine for a local, single-user controller; revisit for anything shared.
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false
+
+unclassified:
+  location:
+    url: "${JENKINS_URL:-http://localhost:8080/}"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "container-registry"
+              description: "Container registry login (local registry or AWS ECR)"
+              username: "${REGISTRY_USER:-changeme}"
+              password: "${REGISTRY_PASSWORD:-changeme}"
+          - string:
+              scope: GLOBAL
+              id: "kubeconfig"
+              description: "kubeconfig for the target Kubernetes cluster"
+              secret: "${KUBECONFIG_CONTENT:-}"
+
+# Define the pipeline job as code instead of clicking it together in the UI.
+# Update the remote URL to your repository.
+jobs:
+  - script: >
+      pipelineJob('vns-research-platform') {
+        description('Lint, test, build, push and deploy the VNS Research Platform')
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote { url('https://github.com/your-username/vns-research-platform.git') }
+                branches('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+          }
+        }
+      }

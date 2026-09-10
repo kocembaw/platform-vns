@@ -1,0 +1,32 @@
+# Run the Jenkins controller locally (Phase 2):
+#   docker compose up --build
+# Then open http://localhost:8080  (user: admin, password: $JENKINS_ADMIN_PASSWORD - default "admin").
+
+services:
+  jenkins:
+    build: .
+    image: vns-jenkins:local
+    container_name: vns-jenkins
+    restart: unless-stopped
+    ports:
+      - "8080:8080"     # web UI
+      - "50000:50000"   # inbound agent port
+    environment:
+      JENKINS_ADMIN_PASSWORD: "${JENKINS_ADMIN_PASSWORD:-admin}"
+      # Set these when you wire up a registry or cluster:
+      # REGISTRY_USER: "${REGISTRY_USER}"
+      # REGISTRY_PASSWORD: "${REGISTRY_PASSWORD}"
+      # KUBECONFIG_CONTENT: "${KUBECONFIG_CONTENT}"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      # Let pipelines build images using the host's Docker daemon:
+      - /var/run/docker.sock:/var/run/docker.sock
+    # The jenkins user needs access to the mounted Docker socket.
+    # On Linux, set DOCKER_GID to your host's docker group id first:
+    #   export DOCKER_GID=$(getent group docker | cut -d: -f3)
+    # On Docker Desktop (macOS/Windows) the default is usually fine.
+    group_add:
+      - "${DOCKER_GID:-999}"
+
+volumes:
+  jenkins_home:
