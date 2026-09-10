@@ -37,8 +37,8 @@ The "research platform" domain is merely a realistic outer layer covering the in
 All the elements on the left have an effect on the platform: Jenkins is responsible for building and deploying, Terraform handles the provisioning of the infrastructure, and the user makes use of the API. All the components within the AWS boundary are in the cloud; the EKS cluster contains two workloads (the API and the generator), while the database is located separately on RDS since it is a managed service outside the cluster.
 
 ```mermaid
-%%{init: {"flowchart": {"nodeSpacing": 70, "rankSpacing": 80}}}%%
-flowchart LR
+%%{init: {"flowchart": {"nodeSpacing": 55, "rankSpacing": 70}}}%%
+flowchart TB
     user(["User"])
     jenkins["Jenkins<br/>build and deploy"]
     terraform["Terraform<br/>infra as code"]
