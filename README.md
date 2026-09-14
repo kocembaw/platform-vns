@@ -12,6 +12,10 @@
 
 It is a research platform that operates using only software and allows to browse the synthetic experiment data for taVNS (vagus-nerve-stimulation). The hardware has been deliberately left out of consideration since the aim of this project is to gain an understanding of cloud and DevOps infrastructure by containerising a small service, orchestrating it on Kubernetes, provisioning it on AWS using Terraform, and then delivering it via a Jenkins pipeline.
 
+<img src="img/HRV.jpg" alt="HRV" width="700" height="400">
+
+
+
 > The measurement data is deterministically produced from a seed and is therefore synthetic; it is not genuine medical data and has no research value, it being included merely to provide the infrastructure with some realistic data to work with.
 
 ## Table of Contents
