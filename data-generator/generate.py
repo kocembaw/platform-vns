@@ -66,8 +66,14 @@ class StimSession(Base):
     experiment_id = Column(String, ForeignKey("experiments.id"), index=True)
     started_at = Column(DateTime(timezone=True))
     duration_s = Column(Integer)
+
+    # średnie tętno w sesji stymulacji, w uderzeniach na minutę (nie przebieg w czasie, tylko średnia z całej sesji)
     mean_hr_bpm = Column(Float)
+
+    # metryka - mierzy, jak bardzo tętno drga z uderzenia na uderzenie (ms)
     hrv_rmssd_ms = Column(Float)
+
+    # SDNN opisuje całkowitą zmienność w całym oknie pomiarowym -- obejmuje zarówno szybkie wahania, jak i powolne trendy (oddechowe, termoregulacyjne, dobowe)
     hrv_sdnn_ms = Column(Float)
 
     experiment = relationship("Experiment", back_populates="sessions")
@@ -79,13 +85,18 @@ def load_protocols(path: str) -> list[dict]:
 
 
 def build_rows(protocols: list[dict]):
-    """Build experiment and session rows deterministically."""
+    # build experiment and session rows deterministically
+
     experiments: list[Experiment] = []
     sessions: list[StimSession] = []
-    base_time = datetime(2026, 1, 1, tzinfo=timezone.utc)
+
+    # 1 january 26
+    base_time = datetime(2026, 1, 1, tzinfo=timezone.utc) # start date for experiments (data will be repeatable)
+
 
     for i in range(1, N_EXPERIMENTS + 1):
-        proto = protocols[(i - 1) % len(protocols)]  # deterministic assignment
+        proto = protocols[(i - 1) % len(protocols)]  # protocol choice (deterministic assignment)
+
         exp_id = f"exp-{i:03d}"
         experiments.append(
             Experiment(
@@ -96,7 +107,9 @@ def build_rows(protocols: list[dict]):
             )
         )
 
+        # losowa liczba z zakresu zdefiniowanego w yaml. * rozpakowuje
         n_sessions = random.randint(*proto["sessions_per_experiment"])
+
         for j in range(1, n_sessions + 1):
             sessions.append(
                 StimSession(
