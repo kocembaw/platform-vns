@@ -1,4 +1,4 @@
-"""Seed the database with synthetic taVNS experiment data.
+"""Seed the database with synthetic VNS experiment data.
 
 Deterministic: the same SEED always produces exactly the same rows, which is
 what makes demos and tests repeatable. Everything here is fabricated — there
@@ -126,7 +126,8 @@ def build_rows(protocols: list[dict]):
 
 
 def wait_for_db(engine, attempts: int = 30, delay: int = 2) -> None:
-    """Retry until Postgres accepts connections (it may start after us)."""
+    #Retry until Postgres accepts connections (it may start after us)
+
     for attempt in range(1, attempts + 1):
         try:
             with engine.connect() as conn:
