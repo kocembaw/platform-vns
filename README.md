@@ -153,14 +153,14 @@ To run the same services on Kubernetes or on AWS, see [Roadmap](#roadmap) and [A
 vns-research-platform/
 │
 ├── README.md                     # this file
-├── Makefile                      # make up / test / build / deploy — one-liner commands
-├── docker-compose.yml            # local dev: api + db + generator on your laptop
+├── Makefile                      # make up / test / build / deploy -- one-liner commands
+├── docker-compose.yml            # local dev: api + db + generator on laptop
 ├── Jenkinsfile                   # pipeline definition (calls ci/*.sh)
 │
 ├── jenkins/                      # how to run Jenkins itself (a server, not a SaaS)
 │   ├── Dockerfile                #   Jenkins image with preinstalled plugins
 │   ├── plugins.txt               #   plugin list (workflow-aggregator, docker, kubernetes, git…)
-│   ├── casc.yaml                 #   Configuration as Code — Jenkins config as code
+│   ├── casc.yaml                 #   Configuration as Code -- Jenkins config as code
 │   └── docker-compose.yml        #   run the Jenkins controller locally (Phase 2)
 │
 ├── api/                          # Python backend (FastAPI)
@@ -184,13 +184,13 @@ vns-research-platform/
 │   ├── base/                     #   base manifests
 │   │   ├── api-deployment.yaml   #     API Deployment
 │   │   ├── api-service.yaml      #     Service (ClusterIP/LoadBalancer)
-│   │   ├── postgres.yaml         #     Postgres (StatefulSet + PVC) — in-cluster to start
+│   │   ├── postgres.yaml         #     Postgres (StatefulSet + PVC) -- in-cluster to start
 │   │   ├── configmap.yaml        #     non-sensitive config
 │   │   └── secret.example.yaml   #     secret TEMPLATE (real secrets stay out of git)
-│   ├── kind/                     #   local cluster config (kind/k3s) — free to learn on
+│   ├── kind/                     #   local cluster config (kind/k3s) 
 │   └── job-seed.yaml             #   Job that runs the generator after deploy
 │
-├── infra/                        # Terraform — AWS
+├── infra/                        # Terraform -- AWS
 │   ├── main.tf                   #   VPC, EKS, RDS (Postgres), ECR, IAM
 │   ├── variables.tf              #   parameters (region, sizes, names)
 │   ├── outputs.tf                #   cluster/RDS endpoints, ECR address
