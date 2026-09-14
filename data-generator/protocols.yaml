@@ -1,8 +1,10 @@
-# Protocol parameter dictionary the generator samples from.
-# All ranges are [min, max]; metrics are SYNTHETIC, not real physiology.
-#   sessions_per_experiment : how many sessions to create per experiment
-#   duration_s              : session length in seconds
-#   mean_hr_bpm             : fabricated mean heart rate
+# Protocol parameter dictionary the generator samples from
+# metrics are synthetic, not real physiology
+# All ranges are [min, max]
+
+#   sessions_per_experiment    : how many sessions to create per experiment
+#   duration_s                 : session length in seconds
+#   mean_hr_bpm                : fabricated mean heart rate
 #   hrv_rmssd_ms / hrv_sdnn_ms : fabricated heart-rate-variability metrics
 
 protocols:
