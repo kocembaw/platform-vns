@@ -17,7 +17,7 @@ It is a research platform that operates using only software and allows to browse
 
 
 > The measurement data is deterministically produced from a seed and is therefore synthetic; it is not genuine medical data and has no research value, it being included merely to provide the infrastructure with some realistic data to work with.
->...In the future, there will be an attempt to integrate the platform with actual hardware, such as the Resona Vibe
+>>...In the future, there will be an attempt to integrate the platform with actual hardware, such as the Resona Vibe
 
 
 
