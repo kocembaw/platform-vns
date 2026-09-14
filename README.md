@@ -10,7 +10,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/)
 
-It is a research platform that operates using only software and allows you to browse the synthetic experiment data for taVNS (vagus-nerve-stimulation). The hardware has been deliberately left out of consideration since the aim of this project is to gain a complete understanding of cloud and DevOps infrastructure by containerising a small service, orchestrating it on Kubernetes, provisioning it on AWS using Terraform, and then delivering it via a Jenkins pipeline.
+It is a research platform that operates using only software and allows to browse the synthetic experiment data for taVNS (vagus-nerve-stimulation). The hardware has been deliberately left out of consideration since the aim of this project is to gain an understanding of cloud and DevOps infrastructure by containerising a small service, orchestrating it on Kubernetes, provisioning it on AWS using Terraform, and then delivering it via a Jenkins pipeline.
 
 > The measurement data is deterministically produced from a seed and is therefore synthetic; it is not genuine medical data and has no research value, it being included merely to provide the infrastructure with some realistic data to work with.
 
@@ -153,14 +153,14 @@ To run the same services on Kubernetes or on AWS, see [Roadmap](#roadmap) and [A
 vns-research-platform/
 │
 ├── README.md                     # this file
-├── Makefile                      # make up / test / build / deploy — one-liner commands
-├── docker-compose.yml            # local dev: api + db + generator on your laptop
+├── Makefile                      # make up / test / build / deploy -- one-liner commands
+├── docker-compose.yml            # local dev: api + db + generator on laptop
 ├── Jenkinsfile                   # pipeline definition (calls ci/*.sh)
 │
 ├── jenkins/                      # how to run Jenkins itself (a server, not a SaaS)
 │   ├── Dockerfile                #   Jenkins image with preinstalled plugins
 │   ├── plugins.txt               #   plugin list (workflow-aggregator, docker, kubernetes, git…)
-│   ├── casc.yaml                 #   Configuration as Code — Jenkins config as code
+│   ├── casc.yaml                 #   Configuration as Code -- Jenkins config as code
 │   └── docker-compose.yml        #   run the Jenkins controller locally (Phase 2)
 │
 ├── api/                          # Python backend (FastAPI)
@@ -184,13 +184,13 @@ vns-research-platform/
 │   ├── base/                     #   base manifests
 │   │   ├── api-deployment.yaml   #     API Deployment
 │   │   ├── api-service.yaml      #     Service (ClusterIP/LoadBalancer)
-│   │   ├── postgres.yaml         #     Postgres (StatefulSet + PVC) — in-cluster to start
+│   │   ├── postgres.yaml         #     Postgres (StatefulSet + PVC) -- in-cluster to start
 │   │   ├── configmap.yaml        #     non-sensitive config
 │   │   └── secret.example.yaml   #     secret TEMPLATE (real secrets stay out of git)
-│   ├── kind/                     #   local cluster config (kind/k3s) — free to learn on
+│   ├── kind/                     #   local cluster config (kind/k3s) 
 │   └── job-seed.yaml             #   Job that runs the generator after deploy
 │
-├── infra/                        # Terraform — AWS
+├── infra/                        # Terraform -- AWS
 │   ├── main.tf                   #   VPC, EKS, RDS (Postgres), ECR, IAM
 │   ├── variables.tf              #   parameters (region, sizes, names)
 │   ├── outputs.tf                #   cluster/RDS endpoints, ECR address
