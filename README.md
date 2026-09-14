@@ -19,7 +19,10 @@ It is a research platform that operates using only software and allows to browse
 > The measurement data is deterministically produced from a seed and is therefore synthetic; it is not genuine medical data and has no research value, it being included merely to provide the infrastructure with some realistic data to work with.
 >>...In the future, there will be an attempt to integrate the platform with actual hardware, such as the Resona Vibe
 
+### Just a few of the many interesting sources relating to VNS:
 
+- [Transcutaneous auricular Vagus nerve stimulation for working memory enhancement](https://www.sciencedirect.com/science/article/pii/S1094715926013292)
+- [Transcutaneous vagus nerve stimulation influences sleep quality and insomnia](https://www.sciencedirect.com/science/article/pii/S1087079226000833?casa_token=N8dN9R4UO_YAAAAA:j1_HBFOpRCfJHPzwEjE6G-kALVVdSzLdKvGUCHf5aI0TvtNc2PHGA4rqoU1ZI5GZDFddM2rwXw)
 
 ## Table of Contents
 
