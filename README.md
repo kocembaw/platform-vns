@@ -12,7 +12,7 @@
 
 It is a research platform that operates using only software and allows to browse the synthetic experiment data for taVNS (vagus-nerve-stimulation). The hardware has been deliberately left out of consideration since the aim of this project is to gain an understanding of cloud and DevOps infrastructure by containerising a small service, orchestrating it on Kubernetes, provisioning it on AWS using Terraform, and then delivering it via a Jenkins pipeline.
 
-<img src="img/HRV.jpg" alt="HRV" width="700" height="400">
+<img src="img/HRV.jpg" alt="HRV" width="400" height="100">
 
 
 
