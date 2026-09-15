@@ -1,7 +1,8 @@
-"""Application configuration, read from environment variables (12-factor).
+"""
+Application configuration, read from environment variables 
 
 Every setting can be overridden by an env var of the same name, e.g.
-``DATABASE_URL``. The defaults target the local docker-compose stack.
+DATABASE_URL. The defaults target the local docker-compose stack.
 """
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
