@@ -1,6 +1,7 @@
-"""SQLAlchemy ORM models.
+"""
+SQLAlchemy ORM models
 
-Mirrors what the data-generator writes: experiments group stimulation
+mirrors what the data-generator writes: experiments group stimulation
 sessions, and each session carries synthetic (fabricated) biosignal metrics.
 """
 
