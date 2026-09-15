@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
-# zabrania Pythonowi tworzenia plików z bajtkodemYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+# zabrania Pythonowi tworzenia plików z bajtkodem
+ENV PYTHONDONTWRITEBYTECODE=1 \ PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
