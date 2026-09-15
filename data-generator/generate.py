@@ -126,29 +126,46 @@ def build_rows(protocols: list[dict]):
 
 
 def wait_for_db(engine, attempts: int = 30, delay: int = 2) -> None:
-    #Retry until Postgres accepts connections (it may start after us)
+    """Retry until Postgres accepts connections (it may start after app)
+    engine - db engine obj
+    delay in seconds (s)
+    """
 
     for attempt in range(1, attempts + 1):
         try:
+            # connection attempt
             with engine.connect() as conn:
+
+                # test query
                 conn.execute(text("SELECT 1"))
             return
         except OperationalError:
             print(f"DB not ready (attempt {attempt}/{attempts}); retrying in {delay}s...")
             time.sleep(delay)
-    raise RuntimeError(f"Database not reachable after {attempts} attempts")
+    raise RuntimeError(f"database not reachable after {attempts} attempts")
 
 
 def main() -> None:
     random.seed(SEED)
+
+    # create connection
     engine = create_engine(DATABASE_URL, pool_pre_ping=True, future=True)
+
     wait_for_db(engine)
+
+    # automatically create tables for db (e.g for experiments and sessions, if not exists) on the basis of defined ORM models
     Base.metadata.create_all(engine)
 
+    # loads protocols configuration
     protocols = load_protocols(PROTOCOLS_PATH)
+
+    # generates lists of experiment objects and related stimulation sessions
     experiments, sessions = build_rows(protocols)
 
+
     Session = sessionmaker(bind=engine, future=True)
+
+    # open connection with db and check current status
     with Session() as db:
         if RESET:
             db.query(StimSession).delete()
