@@ -10,5 +10,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY generate.py protocols.yaml ./
 
-# Runs once, seeds the database, then exits (used as a Kubernetes Job / compose one-shot).
+# Uruchamia się jednorazowo, wypełnia bazę danych danymi początkowymi, a następnie kończy działanie (używane jako zadanie Kubernetes / kompozycja typu „one-shot”)
 CMD ["python", "generate.py"]
