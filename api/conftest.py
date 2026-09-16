@@ -1,6 +1,7 @@
-"""Test fixtures.
+"""
+Test fixtures
 
-Living at the api/ root, this conftest puts api/ on sys.path (so ``app`` is
+Living at the api/ root, this conftest puts api/ on sys.path (so 'app' is
 importable) and provides a TestClient backed by a shared in-memory SQLite
 database seeded with one experiment and one session.
 """
