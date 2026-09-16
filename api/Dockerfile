@@ -10,10 +10,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
 
-# Run as a non-root user
+# komenda uruchamiana podczas budowania obrazu (jako nie-root user)
 RUN useradd --create-home --uid 1001 appuser
 USER appuser
 
 EXPOSE 8000
 
+# domyślna komenda uruchamiana podczas startu kontenera
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
